@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte ta caisse mon chum :)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        input, select, button {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .column {
+            display: inline-block; /* Ensure each equation component stays in a column */
+            margin: 5px;
+            vertical-align: top; /* Align columns to the top */
+        }
+
+        .equation {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #result, #depot {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Have fun a compter ta caisse :)</h1>
+    <div>
+        <div class="column">
+            <p class="equation">(<input type="number" id="coeff1" value="1"> × <span id="value1">0.05</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff2" value="1"> × <span id="value2">0.10</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff3" value="1"> × <span id="value3">0.25</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff4" value="1"> × <span id="value4">1</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff5" value="1"> × <span id="value5">2</span>) +</p>
+        </div>
+        <div class="column">
+            <p class="equation">(<input type="number" id="coeff6" value="1"> × <span id="value6">5</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff7" value="1"> × <span id="value7">10</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff8" value="1"> × <span id="value8">20</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff9" value="1"> × <span id="value9">50</span>) +</p>
+            <p class="equation">(<input type="number" id="coeff10" value="1"> × <span id="value10">100</span>)</p>
+        </div>
+    </div>
+    <button onclick="calculate()">Calcule</button>
+    <p id="result"></p>
+    <p id="depot"></p>
+
+    <script>
+        var previousResult = 0; // Initialize previous result
+
+        function calculate() {
+            var coeff1 = parseFloat(document.getElementById("coeff1").value);
+            var coeff2 = parseFloat(document.getElementById("coeff2").value);
+            var coeff3 = parseFloat(document.getElementById("coeff3").value);
+            var coeff4 = parseFloat(document.getElementById("coeff4").value);
+            var coeff5 = parseFloat(document.getElementById("coeff5").value);
+            var coeff6 = parseFloat(document.getElementById("coeff6").value);
+            var coeff7 = parseFloat(document.getElementById("coeff7").value);
+            var coeff8 = parseFloat(document.getElementById("coeff8").value);
+            var coeff9 = parseFloat(document.getElementById("coeff9").value);
+            var coeff10 = parseFloat(document.getElementById("coeff10").value);
+
+            var value1 = parseFloat(document.getElementById("value1").innerText);
+            var value2 = parseFloat(document.getElementById("value2").innerText);
+            var value3 = parseFloat(document.getElementById("value3").innerText);
+            var value4 = parseFloat(document.getElementById("value4").innerText);
+            var value5 = parseFloat(document.getElementById("value5").innerText);
+            var value6 = parseFloat(document.getElementById("value6").innerText);
+            var value7 = parseFloat(document.getElementById("value7").innerText);
+            var value8 = parseFloat(document.getElementById("value8").innerText);
+            var value9 = parseFloat(document.getElementById("value9").innerText);
+            var value10 = parseFloat(document.getElementById("value10").innerText);
+
+            var result = (coeff1 * value1) + (coeff2 * value2) + (coeff3 * value3) + (coeff4 * value4) + (coeff5 * value5) +
+                (coeff6 * value6) + (coeff7 * value7) + (coeff8 * value8) + (coeff9 * value9) + (coeff10 * value10);
+            
+            // Subtract 250 from previous result and add the new result
+            var depotResult = previousResult - 250 + result;
+
+            // Calculate the amount left after subtracting the depot
+            var amountLeft = result - depotResult;
+
+            // Update previous result for next calculation
+        
+
+            document.getElementById("result").innerHTML = "Total: " + result.toFixed(2);
+            document.getElementById("depot").innerHTML = "Depot: " + depotResult.toFixed(2);
+        }
+    </script>
+</body>
+</html>
